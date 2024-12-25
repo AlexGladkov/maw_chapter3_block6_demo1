@@ -80,9 +80,9 @@ afterEvaluate {
                     }
 
                     scm {
-                        connection.set("scm:git:github.com/AlexGladkov/MAWC3B6D1.git")
-                        developerConnection.set("scm:git:ssh://github.com/AlexGladkov/MAWC3B6D1.git")
-                        url.set("https://github.com/AlexGladkov/MAWC3B6D1")
+                        connection.set("scm:git:github.com/AlexGladkov/maw_chapter3_block6_demo1.git")
+                        developerConnection.set("scm:git:ssh://github.com/AlexGladkov/maw_chapter3_block6_demo1.git")
+                        url.set("https://github.com/AlexGladkov/maw_chapter3_block6_demo1")
                     }
                 }
             }
