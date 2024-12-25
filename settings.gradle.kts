@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MAWC3B6D1"
 include(":app")
+include(":dater")
