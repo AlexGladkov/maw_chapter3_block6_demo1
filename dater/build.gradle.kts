@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "tech.mobiledeveloper.dater"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -54,14 +54,14 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 from(components["release"])
 
-                groupId = "tech.mobiledeveloper.dater"
+                groupId = "tech.mobiledeveloper"
                 artifactId = "dater"
-                version = "1.0.0"
+                version = "0.0.2"
 
                 pom {
                     name.set("Library for dates")
                     description.set("Choose your date")
-                    url.set("https://github.com/yourusername/my-awesome-library")
+                    url.set("https://github.com/AlexGladkov/maw_chapter3_block6_demo1.git")
 
                     licenses {
                         license {
@@ -73,9 +73,9 @@ afterEvaluate {
 
                     developers {
                         developer {
-                            id.set("yourusername")
-                            name.set("Your Name")
-                            email.set("youremail@example.com")
+                            id.set("NeuraDev")
+                            name.set("AlexGladkov")
+                            email.set("mobiledevelopercourse@gmail.com")
                         }
                     }
 
@@ -89,7 +89,7 @@ afterEvaluate {
         }
     }
 
-    signing {
-        sign(publishing.publications["release"])
-    }
+//    signing {
+//        sign(publishing.publications["release"])
+//    }
 }

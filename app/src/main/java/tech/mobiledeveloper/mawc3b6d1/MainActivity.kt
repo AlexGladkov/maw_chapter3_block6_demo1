@@ -1,5 +1,6 @@
 package tech.mobiledeveloper.mawc3b6d1
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,9 +12,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import tech.mobiledeveloper.dater.MyDateUtils
 import tech.mobiledeveloper.mawc3b6d1.ui.theme.MAWC3B6D1Theme
+import java.time.Instant
+import java.util.Date
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,7 +26,7 @@ class MainActivity : ComponentActivity() {
             MAWC3B6D1Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = MyDateUtils.formatDate(Date.from(Instant.now())),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
