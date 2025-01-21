@@ -4,4 +4,14 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.android.library) apply false
+    id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            username.set(findProperty("ossrhUsername") as String? ?: "")
+            password.set(findProperty("ossrhPassword") as String? ?: "")
+        }
+    }
 }

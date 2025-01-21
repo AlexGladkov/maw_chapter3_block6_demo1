@@ -1,9 +1,15 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     id("maven-publish")
     id("signing")
 }
+
+group = "tech.mobiledeveloper"   // Ваш groupId
+version = "0.0.1"               // Текущая версия библиотеки
+description = "Data Library" // Краткое описание
 
 android {
     namespace = "tech.mobiledeveloper.dater"
@@ -48,7 +54,27 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 }
 
+fun Project.loadSigningProperties(fileName: String = "signing.properties") {
+    val signingPropsFile = rootProject.file(fileName)
+    if (signingPropsFile.exists()) {
+        println("Loading signing properties from $signingPropsFile")
+
+        val signingProps = Properties()
+        signingPropsFile.inputStream().use { input ->
+            signingProps.load(input)
+        }
+
+        signingProps.forEach { key, value ->
+            project.extensions.extraProperties.set(key.toString(), value)
+        }
+    } else {
+        println("WARNING: $fileName not found! Signing and publishing might not work.")
+    }
+}
+
 afterEvaluate {
+    loadSigningProperties()
+
     publishing {
         publications {
             create<MavenPublication>("release") {
@@ -89,7 +115,14 @@ afterEvaluate {
         }
     }
 
-//    signing {
-//        sign(publishing.publications["release"])
-//    }
+    signing {
+        // Обычно данные для ключа и пароля берем из gradle.properties:
+        val signingKey = findProperty("signing.key") as String?    // Armor или base64
+        val signingPassphrase = findProperty("signing.password") as String?
+
+        if (signingKey != null) {
+            useInMemoryPgpKeys(signingKey, signingPassphrase)
+            sign(publishing.publications["release"])
+        }
+    }
 }
