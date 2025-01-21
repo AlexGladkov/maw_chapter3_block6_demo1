@@ -11,17 +11,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import tech.mobiledeveloper.dater.DateUtils
 import tech.mobiledeveloper.mawc3b6d1.ui.theme.MAWC3B6D1Theme
+import java.time.Instant
+import java.util.Date
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             MAWC3B6D1Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = DateUtils.formatDate(Date.from(Instant.now())),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
